@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Amazing Amy’s Barbershop</title>
+</head>
+<body>
+ <!-- Site Header -->
+ <h1>Amazing Amy’s Barbershop</h1>
+ <p>A Fresh Cut You And Your Family!</p>
+
+	<!-- Item 1 -->
+	<p>frank 30rmb</p>
+	<img src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2859656346,4275554954&fm=27&gp=0.jpg">
+
+	<!-- Item 2 -->
+	<p>amy 40rmb</p>
+	<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1526485294501&di=a6c8db940182197db6a2e4baad1a8517&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F1f178a82b9014a90faaf9e84a2773912b31bee72.jpg">
+
+	<!-- Item 3 -->
+	<p>jay 50rmb</p>
+	<img src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=38426510,475451259&fm=27&gp=0.jpg">
+
+ <!-- User Form -->
+    <h1>Place Your Order</h1>
+    <form action="{% url 'haircut:home_page' %} " method="POST">
+        {% csrf_token %}
+        <textarea placeholder="What Is Your Name" name="customer_name"></textarea><br>
+        <input type="time" name="time" placeholder="Type Your time"><br>
+        <input type="text" placeholder="Type Your Barber That You Want" name="barber_name" ><br>
+        <input type="submit" value="Make Appointment">
+    </form>
+
+    {% for appointment in appointments %}
+       <p> Customer Name: {{appointment.customer_name}}</p>
+        <p>Barber Wanted: {{appointment.barber_name}}</p>
+        <p>Time: {{appointment.time}}</p> <hr>
+        
+    {% endfor %}
+
+    <h1>Your Order</h1>
+    <p>time: {{time}}</p>
+    <p>customer_name: {{customer_name}}</p>
+
+</body>
+</html>
